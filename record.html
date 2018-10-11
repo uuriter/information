@@ -101,6 +101,7 @@ a.c1 {font-weight: normal;}
       <div class="compact marquee-stacked" id="marquee">
         <div class="marquee-copy">
           <h1>สอบถามข้อมูลสำนักบริการคอมพิวเตอร์</h1>
+คลิกที่รูปไมโครโฟน แล้วถามคำถามเลยค่ะ
         </div>
       </div>
       <div class="compact marquee">
@@ -279,6 +280,17 @@ if (!('webkitSpeechRecognition' in window)) {
       create_email = false;
       createEmail();
     }
+// display answer
+    var q = final_transcript;
+    if (q.includes('ห้องน้ำ'))
+      $('#answer').html('ซ้ายมือ เลยเคาท์เตอร์ รปภ ค่ะ');
+    else if (q.includes('ไวไฟ') || q.toLowerCase().includes('wifi'))
+      $('#answer').html('ชั้น 2 ห้อง 203 ค่ะ');
+    else
+      $('#answer').html('เปิดกระจกถามพี่อำไพเลยค่ะ');
+setTimeout(function(){ $('#final_span').html('');$('#answer').html(''); }, 5000);
+  };
+
   };
 
   recognition.onresult = function(event) {
@@ -302,15 +314,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
-// display result
-    var q = final_transcript;
-    if (q.includes('ห้องน้ำ'))
-      $('#answer').html('ซ้ายมือ เลยเคาท์เตอร์ รปภ ค่ะ');
-    else if (q.includes('ไวไฟ') || q.includes('WiFi'))
-      $('#answer').html('ชั้น 2 ห้อง 203 ค่ะ');
-    else
-      $('#answer').html('เปิดกระจกถามพี่อำไพเลยค่ะ');
-  };
+
 }
 
 function upgrade() {
@@ -406,3 +410,4 @@ function showButtons(style) {
     </script>
   </body>
 </html>
+
